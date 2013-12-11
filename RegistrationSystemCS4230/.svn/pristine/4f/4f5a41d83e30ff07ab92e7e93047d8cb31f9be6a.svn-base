@@ -1,0 +1,31 @@
+package edu.weber.cs4230.DAL;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+import edu.weber.group.bean.Registration;
+
+
+
+public class UsersDAO {
+	
+	public static int newUser(Registration r) throws SQLException{
+		int status = 0;
+		Connection c  = ConnectionProvider.getCon();
+		String s = "Insert into Users (username, password, firstName, lastName, email)";
+		PreparedStatement ps = c.prepareStatement(s);
+		
+		ps.setString(1, r.getUsername());
+		ps.setString(2, r.getPassword());
+		ps.setString(3, r.getFirstName());
+		ps.setString(4, r.getLastName());
+		ps.setString(5, r.getEmail());
+		
+		status = ps.executeUpdate();
+		
+		return status;
+		
+	}
+
+}

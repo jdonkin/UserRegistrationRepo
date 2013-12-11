@@ -1,0 +1,83 @@
+package edu.weber.cs4230.controllers;
+
+import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import edu.weber.cs4230.DAL.UsersDAO;
+import edu.weber.group.bean.Registration;
+
+
+/**
+ * Servlet implementation class Register
+ */
+@WebServlet("/Register")
+public class RegisterController extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+    private Registration bean;   
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public RegisterController(Registration bean) {
+        super();
+        this.bean = bean;
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		try{
+			
+		}
+		catch(Exception e){
+			System.out.println(e.getMessage());
+		}
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		String username = request.getParameter("username");
+		String lastName = request.getParameter("lastName");
+		String firstName = request.getParameter("firstName");
+		String password = request.getParameter("password");
+		String email = request.getParameter("email");
+		
+		try {
+			int status = 0;
+			Registration bean = new Registration();
+			boolean gUser = UsersDAO.getUser(username);
+			
+			if (!gUser) {
+				
+				bean.setUsername(username);
+				bean.setLastName(lastName);
+				bean.setFirstName(firstName);
+				bean.setPassword(password);
+				bean.setEmail(email);
+				
+				UsersDAO.newUser(bean);
+				
+				RequestDispatcher rd = request.getRequestDispatcher("/Welcome.jsp");
+				rd.forward(request, response);
+			} else {
+				status = 1;
+				bean.setStatus(status);
+				RequestDispatcher rd = request.getRequestDispatcher("/Error.jsp");
+				rd.forward(request, response);
+			}
+		} catch(Exception e) {
+			System.out.println(e);
+		}
+		
+	}
+
+}

@@ -1,0 +1,53 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link rel="stylesheet" type="text/css" href="../forms.css">
+<link rel="stylesheet" type="text/css" href="../angularjs.css">
+<link rel="stylesheet" type="text/css" href="../global.css" />
+<script src="http://code.angularjs.org/1.2.1/angular.min.js"></script>
+<script src="../checkInput.js"></script> 
+<title>Change Your Password</title>
+</head>
+<body>
+<div class="round">
+	<h2 class="center" id="title">Update Password</h2>
+</div>
+<div id="stylized" class="myform" ng-app="myApp">
+	<form method="post" name="regForm" novalidate class="css-form" action="../Edit">
+		<fieldset>
+		<input type="hidden" name="submit" value="change password" />
+		<label>Old password:
+			<div ng-show="regForm.oldpassword.$dirty">
+				<span class="small" ng-show="regForm.oldpassword.$error.required">Required</span>
+			</div>
+		</label>
+		<% if (session.getAttribute("resetPassword") == null) { %>
+			<input type="password" name="oldpassword" id="oldpassword" ng-model="oldpassword" required/><br />
+		<% } else { %>
+			<input type="password" name="oldpassword" id="oldpassword" value="xxxxxxxxx"  readonly /><br />
+		<% } %>
+		<label>New password:
+			<div ng-show="regForm.password.$dirty">
+				<span class="small" ng-show="regForm.password.$error.required && regForm.password.$dirty">Password Required</span>
+   				<span class="small" ng-show="!regForm.password.$error.required && (regForm.password.$error.minlength || regForm.password.$error.maxlength) && regForm.password.$dirty">Between 8 &amp; 20 chars.</span>
+   				<span class="small" ng-show="!regForm.password.$error.required && !regForm.password.$error.minlength && !regForm.password.$error.maxlength && regForm.password.$error.pattern && regForm.password.$dirty">Ex: Way2Go!!</span>
+   				<span class="good" ng-show="regForm.password.$valid">Good!</span>
+			</div>
+			</label> <input type="password" name="password" id="password" value="" ng-model="password" ng-minlength="8" ng-maxlength="20" ng-pattern="/(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z])/" required  /><br />
+			
+			<label>confirm password:
+			<div ng-show="regForm.confirmPassword.$dirty">
+				<span class="small" ng-show="regForm.confirmPassword.$error.match">Both passwords must match</span>
+				<span class="small" ng-show="regForm.confirmPassword.$error.required">Required</span>
+				<span class="good" ng-show="regForm.confirmPassword.$valid">Good!</span>
+			</div>
+			</label> <input type="password" name="confirmPassword" id="confirmPassword" value="" match="password" ng-model="confirmPassword" required/><br />
+			<button type="submit" ng-disabled="regForm.$invalid">Submit</button>
+		</fieldset>
+	</form>
+</div>
+</body>
+</html>

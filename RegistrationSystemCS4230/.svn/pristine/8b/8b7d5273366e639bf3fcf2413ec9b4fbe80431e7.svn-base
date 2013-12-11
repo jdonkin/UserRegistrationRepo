@@ -1,0 +1,9 @@
+@CHARSET "ISO-8859-1";
+
+#Oops{
+	
+	background-repeat: no-repeat;
+	background-position: center;
+	position: absolute;
+	h1{color:white; } 
+}

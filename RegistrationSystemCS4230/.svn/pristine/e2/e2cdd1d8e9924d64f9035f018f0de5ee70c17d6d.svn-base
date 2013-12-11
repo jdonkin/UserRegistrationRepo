@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>User Login</title>
+<link rel="stylesheet" type="text/css" href="forms.css" />
+<link rel="stylesheet" type="text/css" href="global.css" />
+</head>
+<body>
+	<div class="round">
+		<h2 class="center" id="title">Login</h2>
+	</div>
+	<div id="stylized" class="myform">
+	<form>
+		<fieldset>
+			<label>Username: </label><input type="text" name="username" /><br />
+			<label>Password: </label><input type="text" name="password" /><br />
+			<button type="submit">Login</button>
+		</fieldset>
+		<a href="Register.html">Register</a>
+		<a href="">Forgot</a>
+	</form>
+	</div>
+</body>
+</html>

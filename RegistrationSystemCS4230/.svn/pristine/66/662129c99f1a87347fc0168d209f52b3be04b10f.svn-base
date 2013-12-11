@@ -1,0 +1,33 @@
+/*
+function validateForm()
+{
+var x=document.forms["regForm"]["firstName"].value;
+if (x==null || x=="")
+  {
+  alert("First name must be filled out");
+  return false;
+  }
+else
+	return true;
+}
+*/
+
+function Controller($scope) {
+    $scope.master = {};
+     
+    $scope.update = function(user) {
+    $scope.master = angular.copy(user);
+    };
+     
+    $scope.reset = function() {
+    $scope.user = angular.copy($scope.master);
+    };
+     
+    $scope.isUnchanged = function(user) {
+    return angular.equals(user, $scope.master);
+    };
+     
+    $scope.reset();
+}
+
+

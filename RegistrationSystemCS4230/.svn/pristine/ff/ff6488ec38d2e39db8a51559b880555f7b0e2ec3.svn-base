@@ -1,0 +1,64 @@
+@CHARSET "ISO-8859-1";
+
+body {
+	font: 75% georgia, sans-serif;
+	line-height: 1.75em;
+	color: #00008F; 
+	background: #C9C8BF; 
+	margin-left: 5%; 
+	margin-right: 5%;
+	padding: 0;
+}
+
+p{
+color: #555753;
+}
+ol, ul {
+  font: italic 1em Georgia, Times, serif;
+  color: #5C5CFF;
+}
+
+ol p, ul p {
+  font: normal .8em Georgia, Helvetica, sans-serif;
+  color: #555753;
+}
+h1	{
+	font : normal normal 300% georgia, "Times New Roman", Times, sans-serif;
+	}
+
+h2	{
+	font : normal normal 225% georgia, "Times New Roman", Times, sans-serif;
+	}
+h3	{
+	font : normal normal 175% georgia, "Times New Roman", Times, sans-serif;
+	}
+h4	{
+	font : normal normal 125% georgia, "Times New Roman", Times, sans-serif;
+	}
+h5	{
+	font : normal normal 100% georgia, "Times New Roman", Times, sans-serif;
+	}	
+h6	{
+	font : normal normal 75% georgia, "Times New Roman", Times, sans-serif;
+	}
+h2#title{
+	color: black;
+}
+.center{
+	text-align: center;
+}
+
+div.round{
+	border:2px solid black;
+	position: relative;
+    top: 0;
+    left: 50%;
+    margin-left: -150px;
+    width: 300px;
+    padding: 5px;
+}
+.round{
+	-moz-border-radius: 15px;
+	border-radius: 15px;
+	background: #C4A160;
+}

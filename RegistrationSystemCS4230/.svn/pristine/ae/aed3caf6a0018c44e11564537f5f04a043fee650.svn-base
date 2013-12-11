@@ -1,0 +1,8 @@
+@CHARSET "ISO-8859-1";
+
+#Oops{
+	background-image: url(images/ErrorPage.jpg);
+	background-repeat: no-repeat;
+	background-position: center;
+	position: a
+}

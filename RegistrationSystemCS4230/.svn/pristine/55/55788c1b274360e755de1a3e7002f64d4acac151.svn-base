@@ -1,0 +1,97 @@
+package edu.weber.cs4230.DAL;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+import edu.weber.group.bean.Registration;
+
+
+
+public class UsersDAO {
+	
+	
+	public static int newUser(Registration r) throws SQLException{
+		int status = 0;
+		Connection c  = ConnectionProvider.getCon();
+		String s = "Insert into users (username, password, firstName, lastName, email) values(?,?,?,?,?)";
+		PreparedStatement ps = c.prepareStatement(s);
+		
+		ps.setString(1, r.getUsername());
+		ps.setString(2, r.getPassword());
+		ps.setString(3, r.getFirstName());
+		ps.setString(4, r.getLastName());
+		ps.setString(5, r.getEmail());
+		
+		status = ps.executeUpdate();
+		
+		return status;
+		
+	}
+	
+	public static boolean getUser(String user) {
+		
+		try
+		{
+		
+		Registration r = new Registration();
+		Connection c = ConnectionProvider.getCon();
+		ResultSet rs = null;
+		Statement s = c.createStatement();
+		String sql = "select UserId, username, password, firstName, lastName, email from users where username = " + user;
+		rs = s.executeQuery(sql);
+		if (!rs.next()){
+			return false;
+		}
+		
+		int id = rs.getInt(1);
+		r.setId(id);
+		String username = rs.getString(2);
+		r.setUsername(username);
+		String password = rs.getString(3);
+		r.setPassword(password);
+		String firstName = rs.getString(4);
+		r.setFirstName(firstName);
+		String lastName = rs.getString(5);
+		r.setLastName(lastName);
+		String email = rs.getString(6);
+		r.setEmail(email);
+		
+		
+		
+		return true;
+		
+		} catch (SQLException se) {
+			return false;
+		}
+		
+	}
+	
+	public static boolean getId(String user) throws SQLException{
+		Registration r = new Registration();
+		Connection c = ConnectionProvider.getCon();
+		ResultSet rs = null;
+		Statement s = c.createStatement();
+		
+		String sql = "Select UserId from users where username = " + user;
+		rs = s.executeQuery(sql);
+		if (rs == null){
+			return false;
+		}
+		int id = rs.getInt(1);
+		r.setId(id);
+		return true;
+	}
+	
+	public static int updateUser(Registration r){
+		int status = 0;
+		Connection c  = ConnectionProvider.getCon();
+		String sql = "update users ";
+		
+		return status;
+	}
+	
+	
+}

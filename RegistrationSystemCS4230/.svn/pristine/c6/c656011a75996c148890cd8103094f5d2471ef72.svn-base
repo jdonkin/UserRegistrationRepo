@@ -1,0 +1,29 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<jsp:useBean id="id" class="edu.weber.group.bean.Registration"/>
+<jsp:setProperty property="*" name="id"/>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link rel="stylesheet" type="text/css" href="forms.css">
+<title>Update Info</title>
+</head>
+<body>
+	<h1>Update</h1>
+	<div id="stylized" class="myform">
+	<form method="post" name="regForm" onsubmit="return validateForm()">
+		<fieldset>
+			<label>First name:</label> <input type="text" name="firstName" id="firstName" value="<% id.getFirstName(); %>"/><br />
+			<label>Last name:</label><input type="text" name="lastName" id="lastName" value="<% id.getLastName(); %>"/><br />
+			<label>User name:</label> <input type="text" name="username" id="username" value="<% id.getUsername(); %>"/><br />
+			<label>password:</label> <input type="text" name="password" id="password" value="<% id.getPassword(); %>"/><br />
+			<label>confirm password:</label> <input type="text" name="confirmPassword" id="confirmPassword" value="<% id.getPassword(); %>"/><br />
+			<label>email:</label> <input type="text" name="email" id="email" value="<% id.getEmail(); %>"/> <br />
+			<label>confirm email:</label> <input type="text" name="confirmEmail" id="confirmEmail" value="<% id.getEmail(); %>"/><br />
+			<button id="check" type="submit">Submit</button>
+		</fieldset>
+	</form>
+</div>
+</body>
+</html>

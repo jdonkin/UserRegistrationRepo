@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html ng-app>
+<head>
+<meta charset="ISO-8859-1">
+<title>User Registration</title>
+<link rel="stylesheet" type="text/css" href="forms.css">
+<link rel="stylesheet" type="text/css" href="angularjs.css">
+<link rel="stylesheet" type="text/css" href="global.css" />
+<script src="http://code.angularjs.org/1.2.1/angular.min.js"></script>
+<script src="checkInput.js"></script> 
+<script src="match.js"></script> 
+</head>
+<body>
+<div class="round">
+	<h2 class="center" id="title">Register</h2>
+</div>
+<div id="stylized" class="myform" ng-app="myApp">
+<form method="post" name="regForm" novalidate class="css-form">
+	<fieldset>
+		<label>First name:
+		<div ng-show="regForm.firstName.$dirty">
+			<span class="small" ng-show="regForm.firstName.$error.required">First Name Required</span>
+		</div>
+		</label> <input type="text" name="firstName" id="firstName" ng-model="user.firstname" required/><br />
+		
+		<label>Last name:
+		<div ng-show="regForm.lastName.$dirty">
+			<span class="small" ng-show="regForm.lastName.$error.required">Last Name Required</span>
+		</div>
+		</label><input type="text" name="lastName" id="lastName" ng-model="user.lastname" required /><br />
+		
+		<label>username:
+		<div ng-show="regForm.username.$dirty">
+			<span class="small" ng-show="regForm.username.$error.required">Username required</span>
+			<span class="small" ng-show="!regForm.username.$error.minLength && !regForm.username.$error.maxLength && regForm.username.$error.pattern && regForm.username.$dirty">letters &amp; numbers only</span>
+			<span class="small" ng-show="!regForm.username.$error.required && (regForm.username.$error.minlength || regForm.username.$error.maxlength) && regForm.username.$dirty">between 5 and 20 characters</span>
+			<span class="good" ng-show="regForm.username.$valid">Good!</span>
+		</div>
+		</label> <input type="text" name="username" id="username" ng-model="user.username" ng-minlength="5" ng-maxlength="20" ng-pattern="/^[A-z][A-z0-9]*$/" required  /><br />
+		
+		<label>password:
+		<div ng-show="regForm.password.$dirty">
+			<span class="small" ng-show="regForm.password.$error.required && regForm.password.$dirty">Password Required</span>
+   			<span class="small" ng-show="!regForm.password.$error.required && (regForm.password.$error.minlength || regForm.password.$error.maxlength) && regForm.password.$dirty">Between 8 &amp; 20 chars.</span>
+   			<span class="small" ng-show="!regForm.password.$error.required && !regForm.password.$error.minlength && !regForm.password.$error.maxlength && regForm.password.$error.pattern && regForm.password.$dirty">One lower &amp; uppercase letter and # or a symbol.)</span>
+   			<span class="good" ng-show="regForm.password.$valid">Good!</span>
+		</div>
+		</label> <input type="password" name="password" id="password" ng-model="password" ng-minlength="8" ng-maxlength="20" ng-pattern="/(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z])/" required  /><br />
+		
+		<label>confirm password:
+		<div ng-show="regForm.confirmPassword.$dirty">
+			<span class="small" ng-show="regForm.password_confirmation.$error.sameAs">Both passwords must match</span>
+			<span class="small" ng-show="regForm.password_confirmation.$error.required">Required</span>
+			<span class="good" ng-show="regForm.password_confirmation.$valid">Good!</span>
+		</div>
+		</label> <input type='password' id='password_confirmation' required name='password_confirmation' same-as='password' ng-model='password_confirmation'><br />
+		
+		
+		<label>email:
+		<div ng-show="regForm.uEmail.$dirty && regForm.uEmail.$invalid">
+			<span class="small" ng-show="regForm.uEmail.$error.required">Add your email</span>
+			<span class="small" ng-show="regForm.uEmail.$error.email">Not Valid</span>
+			<span class="good" ng-show="regForm.uEmail.$valid">Good!</span>
+		</div>
+		
+		</label> <input type="email" name="uEmail" id="email" ng-model="user.email" required/> 
+		<label>confirm email:</label> <input type="email" name="confirmEmail" id="confirmEmail ng-model="user.email" required"/><br />
+		<button ng-click="reset()">Reset</button>
+		<button ng-click="update(user)" ng-disabled="regForm.$invalid">Submit</button>		
+	</fieldset>
+</form>
+
+</div>
+</body>
+</html>

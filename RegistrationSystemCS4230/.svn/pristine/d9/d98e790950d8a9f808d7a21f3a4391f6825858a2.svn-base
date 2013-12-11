@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>User Registration</title>
+<link rel="stylesheet" type="text/css" href="forms.css">
+<link rel="stylesheet" type="text/css" href="global.css" />
+<script src="checkInput.js"></script> 
+</head>
+<body>
+<div class="round">
+	<h2 class="center" id="title">Register</h2>
+</div>
+<div id="stylized" class="myform">
+<form method="post" name="regForm" onsubmit="return validateForm()">
+	<fieldset>
+		<label>First name:<span class="small">Add your first name</span></label> <input type="text" name="firstName" id="firstName"/><br />
+		<label>Last name:<span class="small">Add your last name</span></label><input type="text" name="lastName" id="lastName"/><br />
+		<label>username:<span class="small">choose your username</span></label> <input type="text" name="username" id="username"/><br />
+		<label>password:<span class="small">add a password</span></label> <input type="text" name="password" id="password"/><br />
+		<label>confirm password:<span class="small">confirm your password</span></label> <input type="text" name="confirmPassword" id="confirmPassword"/><br />
+		<label>email:<span class="small">Add your email</span></label> <input type="text" name="email" id="email"/> <br />
+		<label>confirm email:<span class="small">confirm your email</span></label> <input type="text" name="confirmEmail" id="confirmEmail"/><br />
+		<button id="check" type="submit">Submit</button>
+		<button type="reset">Reset</button>		
+	</fieldset>
+</form>
+</div>
+</body>
+</html>

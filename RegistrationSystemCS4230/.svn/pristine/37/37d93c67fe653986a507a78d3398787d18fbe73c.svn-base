@@ -1,0 +1,36 @@
+
+<!DOCTYPE html>
+<html ng-app>
+<head>
+<meta charset="ISO-8859-1">
+<title>User Login</title>
+<link rel="stylesheet" type="text/css" href="forms.css" />
+<link rel="stylesheet" type="text/css" href="global.css" />
+<script src="http://code.angularjs.org/1.2.1/angular.min.js"></script>
+<script src="checkInput.js"></script> 
+</head>
+<body>
+	<div class="round">
+		<h2 class="center" id="title">Login</h2>
+	</div>
+	<div id="stylized" class="myform" ng-app="myApp">
+	<form action="Login" method="post" name="regForm" novalidate class="css-form">
+		<fieldset>
+			<label>Username: 
+			<div ng-show="regForm.username.$dirty">
+				<span class="small" ng-show="regForm.username.$error.required">Required</span>
+			</div>
+		</label><input type="text" name="username" id="username" ng-model="username" required/><br />
+			<label>Password: 
+			<div ng-show="regForm.password.$dirty">
+				<span class="small" ng-show="regForm.password.$error.required">Required</span>
+			</div>
+			</label><input type="password" name="password"  id="password" ng-model="password" required/><br />
+			<button type="submit" ng-disabled="regForm.$invalid">Login</button>
+		</fieldset>
+		<a href="Registration.jsp">Register</a>
+		<a href="ForgotPass.jsp">Forgotten Password</a>
+	</form>
+	</div>
+</body>
+</html>

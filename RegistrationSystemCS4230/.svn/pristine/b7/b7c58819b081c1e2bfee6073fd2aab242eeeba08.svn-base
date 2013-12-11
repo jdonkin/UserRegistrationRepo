@@ -1,0 +1,24 @@
+<%@page import="edu.weber.group.bean.Registration"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<%@ page errorPage = "ErrorPage.jsp" %>
+<jsp:useBean id="id" class="edu.weber.group.bean.Registration"/>
+<jsp:setProperty property="*" name="id"/>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link rel="stylesheet" type="text/css" href="forms.css" />
+<link rel="stylesheet" type="text/css" href="global.css" />>
+<title>Welcome User</title>
+</head>
+<body>	
+	<h1>Welcome</h1>	
+		<form>
+			<label><% id.getFirstName(); %></label>
+			<label><% id.getLastName(); %></label>
+			<label><% id.getUsername(); %></label>
+			<input type="button" value="update" onclick="updateButton()"/>
+		</form>
+</body>
+</html>

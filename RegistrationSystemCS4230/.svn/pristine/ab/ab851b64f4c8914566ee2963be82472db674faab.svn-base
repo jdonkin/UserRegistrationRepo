@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<h1>Registration System</h1>
+<p>
+This project implements a basic registration system for websites. it uses a MVC like model. At the default
+it allows users to register and login to a web page and change their email and password.
+All other functionally is out side the scope of the project. 
+</p>
+<h2>Main Components</h2>
+<ul>
+<li>Login and Authentication</li>
+<li>User Registration</li>
+<li>Reset Password Ability</li>
+<li>Simple and Configurable email engine</li>
+<li>User Account Management</li>
+</ul>
+<h2>Classes of interest</h2>
+<p>AuthFilter - contains all auth code to verify a user is logined in and can access the given web page. Bt default the UserArea</p>
+<p>UsersDAO - class to acess to users information. Once a user logins in this is stored in the session under the attribute UserData</p>
+<p>SimpleMailer - a simple mailer that by defualt is used to send emails to users so they can reset their passwords</p>
+<p>Registration - the user model </p>
+
+<h2>Note to Implementers</h2>
+<p>At the default UserArea is the secure area of the website if more areas is desired the AuthFilter should be configured</p>
+
+</body>
+</html>
