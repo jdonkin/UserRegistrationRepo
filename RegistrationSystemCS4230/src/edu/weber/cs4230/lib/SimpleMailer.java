@@ -1,0 +1,104 @@
+/**
+ * 
+ */
+package edu.weber.cs4230.lib;
+
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Properties;
+
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.MimeMessage;
+
+/**
+ * 
+ * A simple mailer.
+ * 
+ * call SendMail to send an email to a specified email.
+ * 
+ * 
+ * @author Lance
+ *
+ */
+public class SimpleMailer {
+
+    java.util.concurrent.ExecutorService es = java.util.concurrent.Executors.newFixedThreadPool(10);
+
+    
+    /**
+     * 
+     * Sends a HTML based email to the given user
+     * 
+     * 
+     * @param to - the email to send to.
+     * @param subject - the email subject.
+     * @param message - A html message.
+     * 
+     * @see email_template.html
+     * 
+     * 
+     */
+    public void SendMail (final String to, final String subject, final String message)
+    {
+
+        es.execute(new Runnable(){
+
+            public void run() {
+                SendEmail(to,subject,message);
+            }
+        }
+                );
+
+    }
+    
+    private static void SendEmail(String to, String subject, String email)
+    {
+        try {
+            Properties props = new Properties();
+            props.put("mail.smtp.host", "smtp.gmail.com");
+            props.put("mail.smtp.port", "587");
+            props.put("mail.smtp.user", "noreplyreg66666@gmail.com");
+            props.put("mail.from", "noreplyreg66666@gmail.com");
+            props.put("mail.smtp.auth", "true");
+            props.put("mail.smtp.starttls.enable", "true");
+            Session sess = Session.getInstance(props,new javax.mail.Authenticator() {
+
+                @Override
+                protected PasswordAuthentication getPasswordAuthentication() {
+                    return new PasswordAuthentication("noreplyreg66666@gmail.com","QAZwsx12/?");
+                }
+
+            });
+
+            MimeMessage msg = new MimeMessage(sess);
+            msg.setFrom();
+            
+            msg.setRecipients(Message.RecipientType.TO, to);
+            msg.setSubject(subject);
+            msg.setSentDate(Calendar.getInstance().getTime());
+            msg.setContent(email,"text/html");
+            msg.saveChanges();
+
+            Transport.send(msg, msg.getAllRecipients());
+            ///Transport t = sess.getTransport("smtp");
+            //t.connect("castwebtest", "QWErty12/?");
+            //t.sendMessage(msg, msg.getAllRecipients());
+          //  t.close();
+
+        } catch (MessagingException ex) {
+            //Logger.getLogger(cfl.class.getName()).log(Level.SEVERE, null, ex);
+        	
+        	System.out.println(ex.toString());
+        }
+
+    }
+
+    
+    
+
+
+}
